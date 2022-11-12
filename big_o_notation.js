@@ -1,251 +1,264 @@
-const performance = require('perf_hooks').performance; 
+const performance = require('perf_hooks').performance;
 
 const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]; 
 
-// Option A
-// const pushNumberToArray1 = (arr, num) => {
-//     const lastIndex = arr.length - 1
-//     for (let i = 0; i < arr.length; i++) {
-//         if (i === lastIndex) {
-//             arr.splice(lastIndex, 0, num); 
-//         }
-//     }
+const pushNumberToArray1 = (arr, num) => {
+    const lastIndex = arr.length - 1; 
+    for (let i = 0; i < arr.length; i++) {
+        if (i === lastIndex ) {
+        arr.splice(lastIndex, 0, num); 
+        }
+    }
 
-//     return arr; 
-// }
+    return arr
+}
+  
+const pushNumberToArray2 = (arr, num) => {
+    return arr.push(num);
+}
 
-// // Option B
-// const pushNumberToArray2 = (arr, num) => {
-//     return arr.push(num);
-// }
+const t0 = performance.now(); 
+    pushNumberToArray1(arr1, 11); 
+const t1 = performance.now(); 
+console.log(`Time to complete: ${(t1 - t0)/1000}`)
 
-// const t0 = performance.now()
-// pushNumberToArray1(arr1, 21); 
-// const t1 = performance.now(); 
-// console.log(`Time to complete: ${(t1 - t0)/1000}`); 
+const t2 = performance.now(); 
+    pushNumberToArray2(arr1, 11); 
+const t3 = performance.now(); 
+console.log(`Time to complete: ${(t3 - t2)/1000}`)
 
-// const t2 = performance.now()
-// pushNumberToArray2(arr1, 21); 
-// const t3 = performance.now(); 
-// console.log(`Time to complete: ${(t3 - t2)/1000}`); 
-
-// Constant Time Complexity O(1): 
+// Constant Time Complexity O(1)
 
 // ex1
+arr1.push(1)
 
-// arr1.push(1)
+// ex2
+const getNumber = arr1[3]; 
 
-// ex 2
-// arr1.indexOf(3)
-
-// ex 3 
-// const twoSum = (num1, num2) => {
-//     return num1 + num2
-// }
+// ex3
+const twoSum = (num1, num2) => {
+    return num1 + num2; 
+}
 
 // Log Time Complexity O(log n)
 
-// const logTime = (arr) => {
-//     let numberOfLoops = 0; 
+// ex1
+const logTime = (arr) => {
+	let numberOfLoops = 0; 
+  
+  for(let i = 1; i < arr.length; i *=2) {
+		numberOfLogs++
+	}
+  
+  return numberOfLoops
+}
 
-//     for (let i = 1; i < arr.length; i *= 2) {
-//         numberOfLoops++
-//     }
+let loopsA = logTime([1]) // 0 loops
+let loopsB = logTime([1, 2]) // 1 loops
+let loopsC = logTime([1, 2, 3, 4]) // 2 loops
 
-//     return numberOfLoops
-// }
+// Linear Time Complexity O(n)
 
-// console.log(logTime(arr1))
+// ex1
+for (let i = 0; i < arr1.length; i++) {
+    console.log(arr1[i]); 
+}
 
-// // Linear Time Complexity O(n)
+// ex2
+while (arr.length < 10) {
+    console.log(arr)
+}
 
-// // ex1 
-// for (let i = 0; i < arr1.length; i++) {
-//     console.log(arr1[i])
-// }
+// ex3
+arr1.forEach(num => console.log(num))
 
-// // ex2
-// while (arr.length < 10) {
-//     console.log(arr1)
-// }
+// ex4
+arr1.map(num => num * 2); 
 
-// // ex3
-// arr1.forEach(num => console.log(num));
-
-// // ex4
-// arr1.map(num => num * 2)
-
-// // ex5
-// arr1.find(num => num < 10)
-
-// // ex6 
-// arr1.filter(num => num !== 3)
+// ex5
+arr1.find(num => num === 5)
 
 // Quadratic Time Complexity O(n^2)
 
-// ex1 
+// ex 1
 for (let i = 0; i < arr1.length; i++) {
-    for (let j = 1; i < arr1.length; j++) {
-    }
+    for (let i = 0; i < arr1.length; i++) {
+        console.log(arr1[i]); 
+    }    
 }
 
-// // ex2
-// for (let i = 0; i < arr1.length; i++) {
-//     const newArr = arr1.map(num => num * 2)
-// }
-
-// for (let i = 0; i < arr1.length; i++) { // O(n)
-//     for (let j = 1; i < arr1.length; j *= 2) { // O(log n)
-//     }
-// }
+// ex 2
+for (let i = 0; i < arr1.length; i++) {
+    const newArr = arr1.map(num => num * 2)
+}
 
 // Factorial Time Complexity O(n!)
 
-// ex 1
-const factorial = (n) => {
-    let num = n; // num = 4
+// ex1
+const factorial = n => {
+    let num = n;
 
-    if (n === 0) return 1; 
+    if (n === 0) return 1
     for (let i = 0; i < n; i++) {
-        num = n * factorial(n - 1); 
-    }
+        num = n * factorial(n - 1);
+    };
 
-    return num; 
+    return num;
+};
+
+// Ignoring constants
+
+// ex1
+//becomes 3n but reduces to n
+for (let i = 0; i < arr1.length; i++) {
+    console.log('do something 1')
+}
+for (let i = 0; i < arr1.length; i++) {
+    console.log('do something 2')
+}
+for (let i = 0; i < arr1.length; i++) {
+    console.log('do something 3')
 }
 
-console.log(factorial(5))
+// ex2
+// becomes 2 but reduces to 1
+arr1.push(1).pop()
 
-
-const doSomething = (arr1) => {
-    for (let i = 0; i < arr1.length; i++) { // n
-    }
-    
-    for (let j = 1; i < arr1.length; j++) { // n 
-    }
-
-    while (condition) {
-        console.log('something')
+// ex3
+// becomes 2n^2 but reduces to n^2
+for (let i = 0; i < arr1.length; i++) {
+    for (let i = 0; i < arr1.length; i++) {
+        console.log('do something 3')
     }
 }
 
-// n + n + n  ---> 3n ---> n  
-
-arr1.push(1).pop() --> 1 + 1 ---> 2 ---> 1
-
-const doSomething = (arr1) => {
-    for (let i = 0; i < arr1.length; i++) { // n
-        for (let j = 1; i < arr1.length; j++) { // n 
-        }
+for (let i = 0; i < arr1.length; i++) {
+    for (let i = 0; i < arr1.length; i++) {
+        console.log('do something 3')
     }
+}
 
-    for (let i = 0; i < arr1.length; i++) { // n
-        for (let j = 1; i < arr1.length; j++) { // n 
-        }
-    } 
-} // n^2 + n^2 ---> 2n^2 ---> n^2 
+// Consolidating time complexity
 
-// consolidating time complexity
-
+// ex1
+// 2 + 2n + n^2 --> n^2
 const someFunction1 = (arr1) => {
-    let sum = arr1[1] + arr1[2];  // O(1)
-
-    while (condition) { // O(n) * O(1) ---> O(n)
-        for (let j = 1; i < arr1.length; j++) { // n -----> n^2
-        }
+    let sum = arr1[1] + arr[2]
+    
+    while (condition) {
+        sum = arr[5] + arr[7]
     }
-
-    for (let i = 0; i < arr1.length; i++) { // n
-        for (let j = 1; i < arr1.length; j++) { // n -----> n^2
-        }
-    } 
-}
-
-// 1 + n^2 + n^2 ---> n + 2n^2 ---> n^2 
-
-const someFunction2 = (arr1) => {
-    arr1.push(1).pop() // 1
-
-    for (let j = 1; i < arr1.length; j++) { // n
-    }
-
-    for (let j = 1; i < arr1.length; j++) { // n
-    }
-
-    for (let j = 1; i < arr1.length; j++) { // n^3
-        for (let j = 1; i < arr1.length; j++) { 
-            for (let j = 1; i < arr1.length; j++) { 
+  
+    for (let i = 0; i < arr1.length; i++) {
+        for (let i = 0; i < arr1.length; i++) {
+            for (let i = 0; i < arr1.length; i++) {
+                console.log('do something 3')
             }
         }
     }
 }
 
-// 1 + n + n + n^3 ---> n^3
+// ex2
+const someFunction2 = (arr1) => {
+    arr1.push(1).pop()
+    
+    for (let i = 0; i < arr1.length; i++) {
+        console.log('do something 2')
+    }
+    
+    for (let i = 0; i < arr1.length; i++) {
+        console.log('do something 3')
+    }
+    
+    for (let i = 0; i < arr1.length; i++) {
+        for (let i = 0; i < arr1.length; i++) {
+            console.log('do something 3')
+        }
+    }
+}
 
+// Space complexity
 
-// space complexity
+// constant space
+const number = 1; 
+const boo = true; 
+const undef = undefined; 
+const nulls = null; 
 
-// constant space O(1)
+// linear space
+const text = 'this'
+const arr = [1, 2, 3, 4, 5]
 
-1
-true 
-undefined
-null
-
-// linear space O(n)
-
-'this is a text'
-
-[1, 2, 3, 4, 5]
-
-const object = {
+const obj = {
     name: 'tony'
 }
+//inserting
+obj.age = 44; 
 
-// inserting
-object.age = 44; // CONSTANT O(1) - Time Complexity
+//removing 
+delete obj.age; 
 
-// delete 
-delete object.age // CONSTANT O(1) - Time Complexity
+//searching 1
+obj.hasOwnProperty['name']
 
-// searching 
-
-object.hasOwnProperty['name'] // Linear O(n) - Time Complexity 
-
-for (const prop in object) {
-    console.log(object[prop]) // Linear O(n) - Time Complexity
+//searching 2
+for (const prop in obj) {
+    console.log(obj[prop])
 }
 
-// accessing 
-object.age // 44 // CONSTANT O(1) - Time Complexity
+//accessing
+obj.age //44
 
-// retrieve keys
-Object.keys(object) // Linear O(n) - Time Complexity
+//retrieving keys
+Object.keys(obj)
 
-// retrieve values
-Object.values(object) // Linear O(n) - Time Complexity
+//retrieving values
+Object.values(obj)
 
-const arr2 = [1, 2, 3, 4, 5]
+
+const arr2 = [1, 2, 3, 4, 5, 6, 7]; 
 
 //inserting 1
-arr2.push(8) // time complexity - O(1)
+arr2.push(8)
 
 //inserting 2
-arr2.unshift(8) // time complexity - O(n)
+arr2.unshift(0)
 
-// removing 1
-arr2.pop() // time complexity - O(1)
+//removing 1
+arr2.pop()
 
-// removing 2
-arr2.shift() // time complexity - O(n)
+//removing 2
+arr2.shift()
 
-// searching 
-const findNumber = arr2.find(num => num === 2) // time complexity - O(n)
+//searching 1
+const findNumber = arr2.find(num => num === 2)
 
-// retreiving 
-const getNumber = arr2[4] // time complexity - O(1)
+//searching 2
+for (let i = 0; i < arr2.length; i++) {
+    if (arr2[i] === 2) {
+        return arr2[i]
+    }
+}
 
-// splice
-arr2.splice(1, 1, 5) // time complexity - O(n)
+//retrieving 
+const getNumber = arr2[3]
 
-// reduce
-arr2.reduce((total, num) => total + num, 0) // time complexity - O(n)
+//method 1
+const double = arr2.map(num => num * 2)
+
+//method 2
+const removeAndAddNewNumber = arr2.splice(1, 1, 5) 
+
+//method 3
+const getSum = arr2.reduce((total, num) => total + num, 0) 
+
+//method 4
+for (const num of nums) {
+    console.log(num * 2)
+}
+
+//method 5
+const convertToString = arr2.join(' ')
+
+//method 6
+const reversed = arr2.reverse(); 
