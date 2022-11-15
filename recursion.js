@@ -95,3 +95,45 @@ const binarySearchRecursive = (arr, target, min = 0, max = arr.length - 1) => {
 }
 
 
+// example 12: collect Strings
+
+// Write a function called collectStrings which accepts an object and returns 
+// an array of all the values in the object that have a typeof string
+
+collectStrings(obj) // ["hello", "byeeee", "jeeee"]
+
+
+obj = {
+	value1: {}, 
+  value2: {
+    value6: 'hahaha'
+  }, 
+  value3: 'byeeee', 
+  value4: 'jejeje', 
+  value5: {}
+}
+
+const collectStrings = (obj) => {
+  let arr = ['hahaha', 'byeeee', 'jejeje']       
+  
+  // to check a empty array 
+  if (!Object.keys(obj).length) return arr; 
+  
+  for (let key in obj) {
+    if (typeof obj[key] === 'string') {
+      arr.push(obj[key]);
+    } else if (typeof obj[key] === 'object') {
+			arr = arr.concat(collectStrings(obj[key]))
+    }
+  }
+  return arr;
+}
+
+
+
+
+
+
+
+
+
