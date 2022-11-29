@@ -1,35 +1,31 @@
-// Given a sorted asc array of nums, and a target value, write a function that searches for the
-// target in nums, and return the target index, otherwise, return -1 if not found
+const nums = [1, 2, 3, 4, 5, 6, 7]
+const target = 5
 
-const arr1 = [1, 2, 3, 4, 5, 6, 8, 9]
-const target = 5; 
-
-arr1.find(num => num === target) // O(n)
-
-// time complexity O(log n)
-// space complexity O(1)
+// log n - time complexity
+// 1 - space complexity. 
 const binarySearch = (nums, target) => {
-    // step 1: edge case
-    if (!nums.length) return -1 
-
-    // initialize our pointers at the ends of the array
+    //declare the start and end points
     let start = 0; 
     let end = nums.length - 1; 
 
-    //set up our while loop, where it exits when start > end which means there is no target value in the array
-    while (start < end) {
-        // find the middle index 
-        let middleIndex = Math.floor((start + end)/2)
+    // while loop: 
+    // first retrieve the middle index
+    // second, check if the middle value is the target, if so, return middle index, 
+    // if else, if the middle value is less than the target, move the start index to the right of 
+    // the middle index
+    // else, if the mid value is greater than the target, we want to move the end index to the left
 
-        //first check if the middle value is equal to target
+    while (start < end) {
+        let middleIndex = Math.floor((start + end) / 2); 
+
         if (nums[middleIndex] === target) {
-            return middleIndex; 
+            return middleIndex
         } else if (nums[middleIndex] < target) {
             start = middleIndex + 1
         } else {
             end = middleIndex - 1
         }
     }
-
-    return -1;
+    
+    return -1 // did not find our target value
 }
