@@ -33,36 +33,36 @@ const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
 
 // ex1
 
-// arr1.push(1)
+arr1.push(1)
 
-// ex 2
-// arr1.indexOf(3)
+ex 2
+arr1.indexOf(3)
 
-// ex 3 
-// const twoSum = (num1, num2) => {
-//     return num1 + num2
-// }
+ex 3 
+const twoSum = (num1, num2) => {
+    return num1 + num2
+}
 
 // Log Time Complexity O(log n)
 
-// const logTime = (arr) => {
-//     let numberOfLoops = 0; 
+const logTime = (arr) => {
+    let numberOfLoops = 0; 
 
-//     for (let i = 1; i < arr.length; i *= 2) {
-//         numberOfLoops++
-//     }
+    for (let i = 1; i < arr.length; i *= 2) {
+        numberOfLoops++
+    }
 
-//     return numberOfLoops
-// }
+    return numberOfLoops
+}
 
 // console.log(logTime(arr1))
 
 // // Linear Time Complexity O(n)
 
-// // ex1 
-// for (let i = 0; i < arr1.length; i++) {
-//     console.log(arr1[i])
-// }
+// ex1 
+for (let i = 0; i < arr1.length; i++) {
+    console.log(arr1[i])
+}
 
 // // ex2
 // while (arr.length < 10) {
@@ -90,9 +90,9 @@ for (let i = 0; i < arr1.length; i++) {
 }
 
 // // ex2
-// for (let i = 0; i < arr1.length; i++) {
-//     const newArr = arr1.map(num => num * 2)
-// }
+for (let i = 0; i < arr1.length; i++) {
+    const newArr = arr1.map(num => num * 2)
+}
 
 // for (let i = 0; i < arr1.length; i++) { // O(n)
 //     for (let j = 1; i < arr1.length; j *= 2) { // O(log n)
@@ -114,6 +114,8 @@ const factorial = (n) => {
 }
 
 console.log(factorial(5))
+
+5 * 4 * 3 * 2 * 1
 
 
 const doSomething = (arr1) => {
@@ -249,3 +251,6 @@ arr2.splice(1, 1, 5) // time complexity - O(n)
 
 // reduce
 arr2.reduce((total, num) => total + num, 0) // time complexity - O(n)
+
+
+
