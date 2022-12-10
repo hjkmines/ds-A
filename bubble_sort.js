@@ -7,7 +7,13 @@ const bubbleSort = (arr) => {
         // start an inner loop with a variable called j from the beginning to start swapping
         for (let j = 0; j < i; j++) {
             // check if arr[j] > arr[j+1] if so, swap
-            if (arr[j] > arr[j+1]) {
+            if (arr[j].age.get('age') === arr[j+1].age.get('age')) {
+                // hold a temp variable
+                let temp = arr[j]; 
+                // swap!
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp; 
+            } else {
                 // hold a temp variable
                 let temp = arr[j]; 
                 // swap!
