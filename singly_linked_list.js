@@ -60,4 +60,94 @@ class SinglyLinkedList {
 
         return current;
     }
+
+    shift() {
+        if (!this.head) return; 
+
+        let removedNode = this.head; 
+
+        this.head = removedNode.next; 
+
+        this.length--
+        if(!this.length) {
+            this.head = null; 
+            this.tail = null; 
+        }
+
+        return removedNode;
+    }
+
+    unshift(val) {
+        let newNode = new Node(val); 
+
+        if (!this.head) {
+            this.head = newNode; 
+            this.tail = newNode; 
+        } else {
+            newNode.next = this.head
+            this.head = newNode; 
+        }
+
+        this.length++
+        return this; 
+    }
+
+    get(index) {
+        if (index < 0 || index >= this.length) return;
+
+        let counter = 0; 
+        let current = this.head; 
+
+        while (counter !== index) {
+            current = current.next
+            counter++
+        }
+
+        return current; 
+    }
+
+    set(index, val) {
+        
+        let foundNode = this.get(index); 
+
+        if (foundNode) {
+            foundNode.val = val
+        }
+
+        return this;
+    }
+
+    insert(index, val) {
+        if (index < 0 || index > this.length) return; 
+
+        if (index === this.length) return this.push(val)
+        if (index === 0) return this.unshift(val)
+
+        let newNode = new Node(val); 
+
+        let prev = this.get(index - 1)
+        let temp = prev.next; 
+
+        prev.next = newNode; 
+
+        newNode.next = temp
+
+        this.length++
+        return this; 
+    }
+
+    remove(index) {
+        if (index < 0 || index >= this.length) return; 
+
+        if (index === 0) return this.shift()
+
+        if (index === this.length - 1) return this.pop(); 
+
+        let prevNode = this.get(index - 1); 
+        let removedNode = prevNode.next; 
+
+        prevNode.next = removedNode.next
+        this.length--
+        return removedNode;
+    }
 }
