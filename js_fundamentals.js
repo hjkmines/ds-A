@@ -29,10 +29,7 @@ const solution = (string) => {
     // Finally, round down of the maxCount value in case of a decimal number
     // requires TWO 'N's
 
-    let maxCount = Math.min(count['A']/3, count['N']/2)
-    // round down for any decimal occurences
-    maxCount = Math.floor(maxCount)
-
+    let maxCount = Math.floor(Math.min(count['A']/3, count['N']/2))
     return maxCount;
 }
 
