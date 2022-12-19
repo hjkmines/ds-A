@@ -26,11 +26,12 @@ const solution = (string) => {
     // step 2: then, we can use the counts to calculate the maximum number of times
     // we can apply the "BANANA" operation. We can do this by dividing the number of "A's"
     // and "N's" by the corresponding numbers in the "BANANA" string and take the minimum of these values. 
-    // Finally, just divide the result by 2! because each "BANANA" operation SPECFICALLY 
+    // Finally, round down of the maxCount value in case of a decimal number
     // requires TWO 'N's
 
     let maxCount = Math.min(count['A']/3, count['N']/2)
-    maxCount = Math.ceil(maxCount/2)
+    // round down for any decimal occurences
+    maxCount = Math.floor(maxCount)
 
     return maxCount;
 }
