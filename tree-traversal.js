@@ -99,11 +99,31 @@ class BinarySearchTree {
     }
 
     DFSPostOrder() {
+        let data = []; 
 
+        const traverse = (node) => {
+            if (node.left) traverse(node.left); 
+            if (node.right) traverse(node.right); 
+            data.push(node.value)
+        }
+
+        traverse(this.root); 
+
+        return data; 
     }
 
     DFSInOrder() {
+        let data = []; 
 
+        const traverse = (node) => {
+            if (node.left) traverse(node.left); 
+            data.push(node.value)
+            if (node.right) traverse(node.right); 
+        }
+
+        traverse(this.root); 
+
+        return data; 
     }
 }
 
