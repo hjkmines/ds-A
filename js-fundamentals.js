@@ -156,6 +156,40 @@ for (let key in profile) {
 
 console.log(profile.name)
 
+// ------
+
 // profile['name'] ---> 'tony'
 // profile['age'] ---> 28
 // profile['address'] ---> 'some address
+
+// arrays
+
+const numbers = [1, 2, 3, 4, 5]
+
+// map - transforms your array values, NM
+const double = numbers.map(num => num * 2)
+
+// filter - filters in/out values based on your condition, NM
+const filteredArray = numbers.filter(num => num <= 3)
+
+// find - retrieves the FIRST element that meets your condition, NM
+const find3 = numbers.find(num => num === 3);
+
+// slice - returns a new subarray, 
+// slice(startIndex, endIndex)
+// NM
+// startIndex: INCLUSIVE! 
+// endIndex: NOT INCLUSIVE! 
+
+const arr2 = numbers.slice(2)
+
+const arr3 = numbers.slice(1, 3)
+
+// splice - return a array of deleted items
+// splice(startIndex, deleteCount, item1ToAdd, itemNToAdd)
+// M
+// startIndex: Inclusive
+
+const arr4 = numbers.splice(1, 1, 8)
+
+console.log(numbers)
