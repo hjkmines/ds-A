@@ -7,27 +7,22 @@ class Node {
 
 class SinglyLinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0; 
+        this.head = null; 
+        this.tail = null; 
+        this.length = 0;
     }
 
     push(value) {
-        let newNode = new Node(value); 
+        let newNode = new Node(value)
 
-        if (!this.head) {
+        if (!this.length) {
             this.head = newNode; 
-            this.tail = newNodej; 
+            this.tail = newNode; 
         } else {
             this.tail.next = newNode; 
             this.tail = newNode; 
         }
-
-        this.length++; 
-        return this
+        this.length++
+        return this; 
     }
 }
-
-let newLinkedList = new SinglyLinkedList()
-
-newLinkedList.push(9)
