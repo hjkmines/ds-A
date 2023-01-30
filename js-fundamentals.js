@@ -347,3 +347,62 @@ const numbers = [
 for (const { num, age } of numbers) {
     console.log(num, age)
 }
+
+
+const profile = {
+    name: 'tony', 
+    friends: [
+        'bob', 'john', 'chris'
+    ], 
+    movie: {
+        title: {
+            released: 2008, 
+            casts: [
+                'bob jordan', 
+                'john smith'
+            ]
+        }
+    }
+}
+
+const {
+    movie: {
+        title: {
+            casts: [
+                mariaD, 
+                bobbyJ
+            ]
+        }
+    },
+    friends, 
+    name, 
+} = profile
+
+const arr8 = [1, 2, 2, 3]
+
+const [ two, one, three ] = arr8
+
+console.log(mariaD)
+
+// set 
+const numbers2 = new Set(); 
+
+// adding 
+numbers2.add(8)
+numbers2.add(18)
+numbers2.add(188)
+numbers2.add(188)
+
+// deleting
+numbers2.delete(8)
+
+// has
+const hasNumber = numbers2.has(188)
+console.log(hasNumber)
+
+
+const arr9 = [1, 1, 2, 3, 4, 4, 4, 5]
+
+const unique = new Set(arr9)
+
+console.log(unique)
