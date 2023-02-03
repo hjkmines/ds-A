@@ -1,0 +1,22 @@
+{
+  "name": "project_2_start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js-fundamentals.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hjkmines/ds-A.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hjkmines/ds-A/issues"
+  },
+  "homepage": "https://github.com/hjkmines/ds-A#readme",
+  "dependencies": {
+    "node-fetch": "2.0"
+  }
+}
