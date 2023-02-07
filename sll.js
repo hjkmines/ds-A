@@ -38,4 +38,36 @@ class SinglyLinkedList {
         this.tail = null; 
         this.length = 0;
     }
+
+    push(val) {
+        let newNode = new Node(val); 
+
+        if (!this.length) {
+            this.head = newNode; 
+            this.tail = newNode; 
+        } else {
+            this.tail.next = newNode; 
+            this.tail = newNode; 
+        }
+
+        this.length++
+        return this; 
+    }
+
+    shift() {
+        if (!this.length) return 
+
+        let removedNode = this.head; 
+
+        this.head = removedNode.next; 
+
+        this.length--
+
+        if (!this.length) {
+            this.head = null; 
+            this.tail = null; 
+        }
+
+        return removedNode;
+    }
 }
