@@ -27,3 +27,19 @@ const searchBinary = (arr, target) => {
 
     return -1; 
 }
+
+const binarySearchRecursive = (arr, target, left = 0, right = arr.length - 1) => {
+    if (left > right) return -1; 
+
+    let middleIndex = Math.floor((left + right)/2); 
+    let middleValue = arr[middleIndex]; 
+
+    // base case 
+    if (middleValue === target) return middleIndex; 
+
+    if (middleValue < target) {
+        return binarySearchRecursive(arr, target, middleIndex + 1, right)
+    } else {
+        return binarySearchRecursive(arr, target, left, middleIndex - 1)
+    }
+}
