@@ -134,7 +134,7 @@ class SinglyLinkedList {
         let prevNode = this.get(index - 1)
         let temp = prev.next; 
 
-        prev.next = newNode; 
+        prevNode.next = newNode; 
         newNode.next = temp; 
         this.length++; 
         return this; 
