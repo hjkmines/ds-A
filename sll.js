@@ -21,10 +21,8 @@ class Node {
     }
 }
 
-class SinglyLinkedList {
+class Array {
     constructor() {
-        this.head = null; 
-        this.tail = null; 
         this.length = 0; 
     }
 
