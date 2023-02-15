@@ -26,9 +26,6 @@ const searchBinaryIterative = (array, val) => {
 }
 
 const searchBinaryRecursive = (array, val, min = 0, max = array.length - 1) => {
-    let min = 0; 
-    let max = array.length - 1
-
     if (min > max) return -1; 
 
     let middleIndex = Math.floor((min + max)/2); 
