@@ -3,14 +3,14 @@
     In math terms, the sequence is calculated by the previous 2 numbers
 */
 
-// Recursive Solution
+// Recursive Solution - O(2^n)
 const fib = (n) => {
     // base case
     if (n <=2 ) return 1; 
     return fib(n - 1) + fib(n - 2)
 }
 
-// memoized + recursive
+// memoized + recursive - O(n)
 const fibMemoized = (n, memo = []) => {
     if (memo[n]) return memo[n]
     if (n <= 2) return 1; 
@@ -20,7 +20,7 @@ const fibMemoized = (n, memo = []) => {
     return res
 }
 
-// memoized + recursive
+// memoized + recursive - O(n)
 const fibOptimalMemoized = (n, memo = [0, 1, 1]) => {
     if (memo[n]) return memo[n]
     let res = fib(n-1, memo) + fib(n-2, memo)
@@ -29,9 +29,7 @@ const fibOptimalMemoized = (n, memo = [0, 1, 1]) => {
     return res
 }
 
-// tabulated method 
-fibTabulation(5)
-
+// tabulated method - O(n)
 const fibTabulation = (n) => {
     if (n <= 2) return 1
     let fibCollection = [0, 1, 1]; 
@@ -40,5 +38,5 @@ const fibTabulation = (n) => {
         // fibCollection[i] = fibCollection[i - 1] + fibCollection[i-2]
     }
 
-    return fibCollection[n]
+    return fibCollection[5]
 }
