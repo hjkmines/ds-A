@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const category = require('./routes/category');
 const morgan = require('morgan')
+const bodyParser = require('body-parser')
 
 dotenv.config({ path: './config/config.env' })
 
@@ -10,6 +11,9 @@ const app = express();
 if (process.env.NODE_ENV = 'dev') {
     app.use(morgan('dev'))
 }
+
+// parse application json
+app.use(bodyParser.json())
 
 // hook up our resources
 app.use('/category', category)
