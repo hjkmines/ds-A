@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const category = require('./routes/category');
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const item = require('./routes/item');
 
 dotenv.config({ path: './config/config.env' })
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json())
 
 // hook up our resources
 app.use('/category', category)
+app.use('/item', item)
 
 const PORT = process.env.PORT || 5001; 
 

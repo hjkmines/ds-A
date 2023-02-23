@@ -29,6 +29,10 @@ const deleteCategories = (req, res, next) => {
     })
 }
 
+/*
+    For '/category/:categoryId' to retrieve a category, update a category, and delete a category
+*/
+
 const getCategory = (req, res, next) => {
     res
     .status(200)
