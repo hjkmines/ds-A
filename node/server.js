@@ -23,6 +23,7 @@ app.use('/category', category)
 app.use('/item', item)
 app.use('/user', user)
 
+//Default port 5001
 const PORT = process.env.PORT || 5001;
 
 const server = app.listen(PORT, () => {
