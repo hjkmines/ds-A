@@ -26,6 +26,20 @@ class Graph {
 
         delete this.adjList[vertex]
     }
+
+    depthFirstRecursive(start) {
+        // create a list to store the end of result, to be returned at the very end
+        let result = []; 
+
+        // create a object to store visited vertices
+        let visited = {}; 
+
+        let adjList = this.adjList
+
+        (function dfs(vertex){
+            if(!vertex) return null; 
+        })(start)
+    }
 }
 
 let g = new Graph(); 
