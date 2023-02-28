@@ -5,8 +5,12 @@ const item = require('./routes/item');
 const user = require('./routes/user');
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const db = require('./config/db')
 
 dotenv.config({ path: './config/config.env' })
+
+// connects to the MongoDB
+db();
 
 const app = express();
 

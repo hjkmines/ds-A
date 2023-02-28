@@ -8,6 +8,7 @@ const {
     getUser,
     deleteUser
 } = require('../controllers/userController');
+const logger = require('../middlewares/logger');
 
 // Root: '/'
 /**
@@ -16,9 +17,9 @@ const {
  * deleteUsers
  */
 router.route('/')
-    .get(getUsers)
-    .post(postUser)
-    .delete(deleteUsers)
+    .get(logger, getUsers)
+    .post(logger, postUser)
+    .delete(logger, deleteUsers)
 
 // Root: '/:userId'
 /**
@@ -28,8 +29,8 @@ router.route('/')
  */
 
 router.route('/:userId')
-    .get(getUser)
-    .put(putUser)
-    .delete(deleteUser)
+    .get(logger, getUser)
+    .put(logger, putUser)
+    .delete(logger, deleteUser)
 
 module.exports = router;

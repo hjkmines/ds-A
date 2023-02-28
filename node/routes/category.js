@@ -8,16 +8,17 @@ const {
       putCategory, 
       deleteCategory
 } = require('../controllers/categoryController');
+const logger = require('../middlewares/logger');
 
 router.route('/')
-      .get(getCategories)
-      .post(postCategory)
-      .delete(deleteCategories)
+      .get(logger, getCategories)
+      .post(logger, postCategory)
+      .delete(logger, deleteCategories)
 
 router.route('/:categoryId')
-      .get(getCategory)
-      .put(putCategory)
-      .delete(deleteCategory)
+      .get(logger, getCategory)
+      .put(logger, putCategory)
+      .delete(logger, deleteCategory)
 
 
 module.exports = router;

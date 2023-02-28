@@ -8,6 +8,7 @@ const {
     getItem,
     deleteItem
 }= require('../controllers/itemController');
+const logger = require('../middlewares/logger');
 
 // Root: '/'
 /*
@@ -16,9 +17,9 @@ const {
   deleteItems
 */
 router.route('/')
-    .get(getItems)
-    .post(postItem)
-    .delete(deleteItems)
+    .get(logger, getItems)
+    .post(logger, postItem)
+    .delete(logger, deleteItems)
 
 // Root: '/:itemId'
 /*
@@ -27,8 +28,8 @@ router.route('/')
   deleteItem
 */
 router.route('/:itemId')
-    .get(getItem)
-    .put(putItem)
-    .delete(deleteItem)
+    .get(logger, getItem)
+    .put(logger, putItem)
+    .delete(logger, deleteItem)
 
 module.exports = router;
