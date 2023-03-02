@@ -1,3 +1,5 @@
+const User = require('../models/User');
+
 /**
  *  For '/user' to retrieve all users, create a user and delete all users
  */
