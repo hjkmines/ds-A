@@ -3,10 +3,15 @@
  */
 
 const getItems = (req, res, next) => {
+    try {
+
     res
     .status(200)
     .setHeader('Content-Type', 'application/json')
     .json({success: true, msg: "Show me all items"})
+    } catch (err) {
+
+    }
 }
 
 // itemName, itemDescription, price, isClearance
