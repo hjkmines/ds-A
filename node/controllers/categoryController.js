@@ -18,7 +18,7 @@ const getCategories = async (req, res, next) => {
 
 const postCategory = async (req, res, next) => {
     try {
-        const result = await Category.create(req.body);
+        const result = await Category.create(req.body)
 
         res
             //New data was created
@@ -33,7 +33,7 @@ const postCategory = async (req, res, next) => {
 const deleteCategories = async (req, res, next) => {
     try {
         //we don't want to display what we deleted so we just send a message in json format
-        await Category.deleteMany();
+        await Category.deleteMany()
 
         res
             .status(200)
