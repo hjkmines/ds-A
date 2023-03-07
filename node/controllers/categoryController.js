@@ -8,22 +8,23 @@ const getCategories = async (req, res, next) => {
         const result = await Category.find()
 
         res
-        .status(200)
-        .setHeader('Content-Type', 'application/json')
-        .json(result)
+            .status(200)
+            .setHeader('Content-Type', 'application/json')
+            .json(result)
     } catch (err) {
-       throw new Error(`Error retrieving categories: ${err.message}`) 
+        throw new Error(`Error retrieving categories: ${err.message}`)
     }
 }
 
 const postCategory = async (req, res, next) => {
     try {
-        const result = await Category.create(req.body); 
+        const result = await Category.create(req.body)
 
         res
-        .status(201)
-        .setHeader('Content-Type', 'application/json')
-        .json(result)       
+            //New data was created
+            .status(201)
+            .setHeader('Content-Type', 'application/json')
+            .json(result)
     } catch (err) {
         throw new Error(`Error posting a new category: ${err.message}`)
     }
@@ -31,16 +32,17 @@ const postCategory = async (req, res, next) => {
 
 const deleteCategories = async (req, res, next) => {
     try {
-        await Category.deleteMany();
+        //we don't want to display what we deleted so we just send a message in json format
+        await Category.deleteMany()
 
         res
-        .status(200)
-        .setHeader('Content-Type', 'application/json')
-        .json({
-            success: true, 
-            msg: 'Deleted all categories'
-        })
-    } catch (error) {
+            .status(200)
+            .setHeader('Content-Type', 'application/json')
+            .json({
+                success: true,
+                msg: 'Deleted all categories'
+            })
+    } catch (err) {
         throw new Error(`Error deleting categories: ${err.message}`)
     }
 }
@@ -49,41 +51,59 @@ const deleteCategories = async (req, res, next) => {
     For '/category/:categoryId' to retrieve a category, update a category, and delete a category
 */
 
-const getCategory = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({
-        success: true, 
-        msg: `Showing me category with id: ${req.params.categoryId}`
-    })
+const getCategory = async (req, res, next) => {
+    try {
+        await Category.findOne();
+
+        res
+            .status(200)
+            .setHeader('Content-Type', 'application/json')
+            .json({
+                success: true,
+                msg: `Displaying the category with id: ${req.params.categoryId}`
+            })
+    } catch (err) {
+        throw new Error(`Error finding ${result}`)
+    }
 }
 
-const putCategory = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({
-        success: true, 
-        msg: `Updating a category with id: ${req.params.categoryId}`
-    })
+const putCategory = async (req, res, next) => {
+    try {
+        await Category.updateOne()
+
+        res
+            .status(200)
+            .setHeader('Content-Type', 'application/json')
+            .json({
+                success: true,
+                msg: `Updating a category with id: ${req.params.categoryId}`
+            })
+    } catch (err) {
+        throw new Error(`Error updating a category.`)
+    }
 }
 
-const deleteCategory = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({
-        success: true, 
-        msg: `Deleting a category with id: ${req.params.categoryId}`
-    })
+const deleteCategory = async (req, res, next) => {
+    try {
+        await Category.deleteOne()
+
+        res
+            .status(200)
+            .setHeader('Content-Type', 'application/json')
+            .json({
+                success: true,
+                msg: `Deleting a category with id: ${req.params.categoryId}`
+            })
+    } catch (err) {
+        throw new Error(`Error deleting a category. ${err.message}`)
+    }
 }
 
 module.exports = {
-    getCategories, 
-    postCategory, 
-    deleteCategories, 
-    getCategory, 
-    putCategory, 
+    getCategories,
+    postCategory,
+    deleteCategories,
+    getCategory,
+    putCategory,
     deleteCategory
 }

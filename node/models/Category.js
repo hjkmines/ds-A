@@ -13,7 +13,9 @@ const CategorySchema = new Schema({
       require: true,
       enum: [
          'Female',
-         'Male'
+         'Male',
+         'female',
+         'male'
       ]
    }
 }, {
