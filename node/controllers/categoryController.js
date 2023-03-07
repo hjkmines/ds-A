@@ -42,7 +42,7 @@ const deleteCategories = async (req, res, next) => {
                 success: true,
                 msg: 'Deleted all categories'
             })
-    } catch (error) {
+    } catch (err) {
         throw new Error(`Error deleting categories: ${err.message}`)
     }
 }
@@ -53,7 +53,7 @@ const deleteCategories = async (req, res, next) => {
 
 const getCategory = async (req, res, next) => {
     try {
-        const result = await Category.findOne();
+        await Category.findOne();
 
         res
             .status(200)
@@ -62,7 +62,7 @@ const getCategory = async (req, res, next) => {
                 success: true,
                 msg: `Displaying the category with id: ${req.params.categoryId}`
             })
-    } catch (error) {
+    } catch (err) {
         throw new Error(`Error finding ${result}`)
     }
 }
@@ -78,7 +78,7 @@ const putCategory = async (req, res, next) => {
                 success: true,
                 msg: `Updating a category with id: ${req.params.categoryId}`
             })
-    } catch (error) {
+    } catch (err) {
         throw new Error(`Error updating a category.`)
     }
 }
@@ -94,7 +94,7 @@ const deleteCategory = async (req, res, next) => {
                 success: true,
                 msg: `Deleting a category with id: ${req.params.categoryId}`
             })
-    } catch (error) {
+    } catch (err) {
         throw new Error(`Error deleting a category. ${err.message}`)
     }
 }
