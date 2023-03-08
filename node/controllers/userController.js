@@ -42,15 +42,12 @@ const deleteUsers = (req, res, next) => {
 
 const getUser = async (req, res, next) => {
     try {
-        await User.findOne();
+        const result = await User.findById(req.params.userId);
 
         res
             .status(200)
             .setHeader('Content-Type', 'application/json')
-            .json({
-                success: true,
-                msg: `Show user with id: ${req.params.userId}`
-            })
+            .json(result)
     } catch (err) {
         throw new Error(`Error finding ${result}`)
     }
@@ -58,15 +55,13 @@ const getUser = async (req, res, next) => {
 
 const putUser = async (req, res, next) => {
     try {
-        await User.updateOne
+        const result = await User.findByIdAndUpdate(req.params.userId, {
+            $set: req.body}, {new: true})
 
         res
             .status(200)
             .setHeader('Content-Type', 'application/json')
-            .json({
-                success: true,
-                msg: `Updating a user with id: ${req.params.userId}`
-            })
+            .json(result)
     } catch (err) {
         throw new Error(`Error updating a new user`)
     }
@@ -74,7 +69,7 @@ const putUser = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
     try {
-        await User.deleteOne()
+        await User.findByIdAndDelete(req.params.userId)
         res
             .status(200)
             .setHeader('Content-Type', 'application/json')

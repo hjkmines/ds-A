@@ -5,7 +5,8 @@ const item = require('./routes/item');
 const user = require('./routes/user');
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const db = require('./config/db')
+const db = require('./config/db');
+const errorHandler = require('./middlewares/error');
 
 dotenv.config({ path: './config/config.env' })
 
@@ -26,6 +27,8 @@ app.use(bodyParser.json())
 app.use('/category', category)
 app.use('/item', item)
 app.use('/user', user)
+
+app.use(errorHandler);
 
 //Default port 5001
 const PORT = process.env.PORT || 5001;

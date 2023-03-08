@@ -53,15 +53,12 @@ const deleteCategories = async (req, res, next) => {
 
 const getCategory = async (req, res, next) => {
     try {
-        await Category.findOne();
+        const result = await Category.findById(req.params.categoryId);
 
         res
             .status(200)
             .setHeader('Content-Type', 'application/json')
-            .json({
-                success: true,
-                msg: `Displaying the category with id: ${req.params.categoryId}`
-            })
+            .json(result)
     } catch (err) {
         throw new Error(`Error finding ${result}`)
     }
@@ -69,15 +66,15 @@ const getCategory = async (req, res, next) => {
 
 const putCategory = async (req, res, next) => {
     try {
-        await Category.updateOne()
+        const result = await Category.findByIdAndUpdate(req.params.categoryId, {
+            $set: req.body
+            //returns new data not the original body
+        }, { new: true })
 
         res
             .status(200)
             .setHeader('Content-Type', 'application/json')
-            .json({
-                success: true,
-                msg: `Updating a category with id: ${req.params.categoryId}`
-            })
+            .json(result)
     } catch (err) {
         throw new Error(`Error updating a category.`)
     }
@@ -85,7 +82,7 @@ const putCategory = async (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
     try {
-        await Category.deleteOne()
+        await Category.findByIdAndDelete(req.params.categoryId)
 
         res
             .status(200)

@@ -20,18 +20,12 @@ const getItems = async (req, res, next) => {
 
 const postItem = async (req, res, next) => {
     try {
-        await Item.create(req.body)
+        const result = await Item.create(req.body)
 
         res
             .status(201)
             .setHeader('Content-Type', "application/json")
-            .json({
-                success: true, msg: `Creating a new item with the following fields
-        itemName: ${req.body.itemName}, 
-        itemDescription: ${req.body.itemDescription}, 
-        price: ${req.body.price},
-        isClearance: ${req.body.isClearance}`
-            })
+            .json(result)
     } catch (err) {
         throw new Error(`Error posting a new item: ${err.message}`)
     }
@@ -57,15 +51,12 @@ const deleteItems = async (req, res, next) => {
  */
 const getItem = async (req, res, next) => {
     try {
-        await Item.findOne();
+        const result = await Item.findById(req.body.itemId);
 
         res
             .status(200)
             .setHeader('Content-Type', 'application/json')
-            .json({
-                success: true,
-                msg: `Showing an item with id: ${req.params.itemId}`
-            })
+            .json(result)
     } catch (err) {
         throw new Error(`Error finding ${result}`)
     }
@@ -73,15 +64,14 @@ const getItem = async (req, res, next) => {
 
 const putItem = async (req, res, next) => {
     try {
-        await Item.updateOne()
+        const result = await Item.findByIdAndUpdate(req.params.itemId, {
+            //specifically updates the body
+            $set: req.body}, {new: true })
 
         res
             .status(200)
             .setHeader('Content-Type', 'application/json')
-            .json({
-                success: true,
-                msg: `Updating an item with id: ${req.params.itemId}`
-            })
+            .json(result)
     } catch (err) {
         throw new Error(`Error updating an item.`)
     }
@@ -89,7 +79,7 @@ const putItem = async (req, res, next) => {
 
 const deleteItem = async (req, res, next) => {
     try {
-        await Item.deleteOne()
+        await Item.findByIdAndDelete(req.params.itemId)
 
         res
             .status(200)
