@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const db = require('./config/db');
 const errorHandler = require('./middlewares/error');
+const cors = require('cors')
 
 dotenv.config({ path: './config/config.env' })
 
@@ -19,6 +20,10 @@ const app = express();
 if (process.env.NODE_ENV = 'dev') {
     app.use(morgan('dev'))
 }
+
+app.use(cors({
+    origin: '*'
+}))
 
 // parse application json
 app.use(bodyParser.json())

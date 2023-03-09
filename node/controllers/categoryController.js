@@ -4,8 +4,25 @@ const Category = require('../models/Category')
 */
 
 const getCategories = async (req, res, next) => {
+    //query parameter
+    const options = {};
+    const filter = {}; 
+    if (Object.keys(req.query).length) {
+        const {
+            sortByCategory, 
+            limit
+        } = req.query
+
+        if (limit) options.limit = limit; 
+        if (sortByCategory) options.sort = {
+            categoryName: sortByCategory === 'asc' ? 'ascending' : 'descending'
+        }
+    }
+
+    console.log('this is the options object', options)
+
     try {
-        const result = await Category.find()
+        const result = await Category.find({}, filter, options)
 
         res
             .status(200)
