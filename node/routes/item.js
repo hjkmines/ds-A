@@ -9,6 +9,7 @@ const {
     deleteItem
 }= require('../controllers/itemController');
 const logger = require('../middlewares/logger');
+const { itemValidator } = require('../middlewares/validators')
 
 // Root: '/'
 /*
@@ -18,7 +19,7 @@ const logger = require('../middlewares/logger');
 */
 router.route('/')
     .get(logger, getItems)
-    .post(logger, postItem)
+    .post(logger, itemValidator, postItem)
     .delete(logger, deleteItems)
 
 // Root: '/:itemId'

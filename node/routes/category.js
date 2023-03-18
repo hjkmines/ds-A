@@ -9,10 +9,11 @@ const {
       deleteCategory
 } = require('../controllers/categoryController');
 const logger = require('../middlewares/logger');
+const { categoryValidator } = require('../middlewares/validators')
 
 router.route('/')
       .get(logger, getCategories)
-      .post(logger, postCategory)
+      .post(logger, categoryValidator, postCategory)
       .delete(logger, deleteCategories)
 
 router.route('/:categoryId')

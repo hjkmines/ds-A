@@ -9,6 +9,7 @@ const {
     deleteUser
 } = require('../controllers/userController');
 const logger = require('../middlewares/logger');
+const { userValidator } = require ('../middlewares/validators')
 
 // Root: '/'
 /**
@@ -18,7 +19,7 @@ const logger = require('../middlewares/logger');
  */
 router.route('/')
     .get(logger, getUsers)
-    .post(logger, postUser)
+    .post(logger, userValidator, postUser)
     .delete(logger, deleteUsers)
 
 // Root: '/:userId'
