@@ -78,4 +78,22 @@ function capitalizeLetters(str) {
     }
     return capitalized.join(' ')
 }
-capitalizeLetters('i love javascript')
+// capitalizeLetters('i love javascript') ---> ['i', 'love', 'javascript']
+
+// Return the longest word of a string
+
+//for loop that iterates through each word
+//compare the length of each word -> if()
+//return the longest word
+
+function longestWord(string) {
+    const arrayWords = string.split(' ')
+    let longestWord = ''
+    for(let i = 0; i < arrayWords.length; i++) {
+       if(arrayWords[i].length > longestWord.length) {
+         longestWord = arrayWords[i]
+       }
+    }
+    console.log(longestWord)
+}
+longestWord('This is a really lonnnnnnng string')
