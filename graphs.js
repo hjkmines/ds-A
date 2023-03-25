@@ -46,31 +46,24 @@ class Graph {
         return result;
     }
 
-    depthFirstIterative(start) {
-        const stack = [start]
+    depthFirstIterative(start){
+        const stack = [start];
+        const result = [];
+        const visited = {};
+        let currentVertex;
 
-        const result = []; 
+        visited[start] = true;
+        while(stack.length){
+            currentVertex = stack.pop();
+            result.push(currentVertex);
 
-        const visited = {}; 
-
-        const adjList = this.adjList;
-
-        let currentVertex; 
-        visited[start] = true; 
-
-        while (stack.length) {
-            currentVertex = stack.pop(); 
-            result.push(currentVertex)
-            
-            adjList[currentVertex].forEach(neighbor => {
-                if (!visited[neighbor]) {
-                    visited[currentVertex] = true; 
-                    
-                    stack.push(neighbor)
-                }
-            })
+            this.adjList[currentVertex].forEach(neighbor => {
+               if(!visited[neighbor]){
+                   visited[neighbor] = true;
+                   stack.push(neighbor)
+               } 
+            });
         }
-
         return result;
     }
 
@@ -104,12 +97,20 @@ class Graph {
 
 const g = new Graph(); 
 
-g.addVertex('DAL')
-g.addVertex('SAN')
-g.addVertex('HOU')
-g.addEdge('SAN', 'DAL')
-g.addEdge('HOU', 'DAL')
-g.addEdge('HOU', 'SAN')
-g.removeVertex('HOU')
+g.addVertex("A")
+g.addVertex("B")
+g.addVertex("C")
+g.addVertex("D")
+g.addVertex("E")
+g.addVertex("F")
 
-console.log(g)
+
+g.addEdge("A", "B")
+g.addEdge("A", "C")
+g.addEdge("B","D")
+g.addEdge("C","E")
+g.addEdge("D","E")
+g.addEdge("D","F")
+g.addEdge("E","F")
+
+console.log(g.depthFirstIterative('A'))
